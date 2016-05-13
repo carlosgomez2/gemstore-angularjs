@@ -3,23 +3,23 @@
   var app = angular.module('gemStore', [ ]);
 
   app.controller('StoreController', function(){
-    this.product = gems;  
+    this.products = gems;  
   });
   
   var gems = [
     {
-      name: 'Dodecaedro',
-      price: 2.95,
+      name: 'Dodecaedron',
+      price: 2,
       description: 'lorem ipsum ipsum lorem',
-      canPurchase: false,
+      canPurchase: true
     },
     {
       name: 'Pentagonal Gem',
       price: 5.95,
       description: 'lorem ipsum lorem ipsum',
-      canPurchase: false,
+      canPurchase: true
     }
-  ]
+  ];
   
 })();
 

@@ -1,3 +1,32 @@
+h1{
+  font-weight: 700;
+}
+h2{
+  font-weight: 500;
+}
+.title{
+  max-width: 800px;
+  margin: auto;
+  border-radius: 4px;
+  color: #FFC107;
+}
+.title h1, h2{
+    margin: 0;
+    line-height: 1.5em;
+  }
+.title h1{
+    padding-top: 1.5rem;
+  }
+.title h2{
+    padding-bottom: 1.5rem;
+  }
+.list-group{
+  margin: auto;
+  max-width: 800px;
+  background-color: white;
+  border-radius: 4px;
+  border: 1px solid #ddd;
+}
 .small-image{
   width: 65px;
   height: 65px;
@@ -7,4 +36,7 @@
 }
 .small-image:last-child{
   margin-right: 0;
+}
+.secondary-text{
+  color: #727272;
 }

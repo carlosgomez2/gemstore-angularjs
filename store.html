@@ -2,6 +2,7 @@
 <html ng-app="gemStore">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
   <title>Gem Store</title>
   <link rel="stylesheet" type="text/css" href="bootstrap.min.css" />
     <link rel="stylesheet" type="text/css" href="main.css" />
@@ -10,13 +11,17 @@
   <script type="text/javascript" src="app.js"></script>
 </head>
 <body ng-controller="StoreController as store">
-  <h1 class="text-center">Flatlander Crafted Gems</h1>
-  <h2 class="text-center">- an Angular store -</h2>
+ <br />
+  <div class="title">
+    <h1 class="text-center">Flatlander Crafted Gems</h1>
+    <h2 class="text-center">- an AngularJS store -</h2>
+  </div>
+  <br />
   <div class="list-group">
     <div class="list-group-item" ng-repeat="product in store.products">
       <h3> {{ product.name }} <em class="pull-right">{{ product.price | currency }}</em> </h3>
       <p> {{ product.description }} </p>
-      <button ng-show="product.canPurchase"> Add to cart </button>
+      <button class="btn btn-success" ng-show="product.canPurchase"> Add to cart </button>
       <!-- Image Gallery  -->
         <div ng-show="product.images.length">
         <!-- Fail 1 Message -->
@@ -27,7 +32,7 @@
           </ul>
         </div>
 
-      <section ng-controller="PanelController as panel">
+      <section class="tab" ng-controller="PanelController as panel">
         <ul class="nav nav-pills">
           <li ng-class="{active: panel.isSelected(1)}">
             <a href ng-click="panel.selectTab(1)">Description</a>
@@ -42,15 +47,39 @@
 
         <div class="panel" ng-show="panel.isSelected(1)">
           <h4>Description</h4>
-          <blockquote>None yet</blockquote>
+          <blockquote>{{product.description}}</blockquote>
         </div>
         <div class="panel" ng-show="panel.isSelected(2)">
           <h4>Specifications</h4>
-          <blockquote>None yet</blockquote>
+          <blockquote>Shine: {{product.shine}}</blockquote>
         </div>
         <div class="panel" ng-show="panel.isSelected(3)">
           <h4>Review</h4>
-          <blockquote>None yet</blockquote>
+          <blockquote ng-repeat="review in product.reviews">
+            <b>{{review.stars}} Stars: </b>
+            {{review.body}} 
+            <cite class="secondary-text">- {{review.author}}</cite>
+          </blockquote>
+          
+          <form name="reviewForm">
+            <blackquote>
+              <b>{{review.stars}} Stars: </b>
+              {{review.body}}
+              <cite>by: {{review.author}}</cite>
+            </blackquote>
+            <select ng-model="review.stars" class="btn btn-default dropdown-toggle">
+              <option value="1">1 star</option>
+              <option value="2">2 stars</option>
+              <option value="3">3 stars</option>
+              <option value="4">4 stars</option>
+              <option value="5">5 stars</option>
+            </select>
+            <textarea ng-model="review.body" class="form-control" placeholder="Comment"></textarea>
+            <label>by:</label>
+            <input ng-model="review.author" type="email" class="form-control" placeholder="email" />
+            <input type="submit" value="Submit" class="btn btn-primary" />
+          </form>
+          
         </div>
       </section>
     </div>

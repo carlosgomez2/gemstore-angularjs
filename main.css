@@ -8,7 +8,6 @@ h2{
   max-width: 800px;
   margin: auto;
   border-radius: 4px;
-  color: #FFC107;
 }
 .title h1, h2{
     margin: 0;
@@ -39,4 +38,10 @@ h2{
 }
 .secondary-text{
   color: #727272;
+}
+.margin-form{
+  margin-top: 1.5rem;
+}
+.margin-form-mail{
+  margin-top: 1rem;
 }

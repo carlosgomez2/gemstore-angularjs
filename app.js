@@ -120,6 +120,7 @@
     
     // add Review function
     this.addReview = function(product){
+      this.review.createdOn = Date.now(); // add timestamp 
       product.reviews.push(this.review); // push the content into review fields
       this.review = {}; //reset the form
     };

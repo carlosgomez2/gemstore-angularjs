@@ -62,23 +62,24 @@
           </blockquote>
           
           <form name="reviewForm" ng-controller="ReviewController as reviewCtrl"
-           ng-submit="reviewCtrl.addReview(product)">
+           ng-submit="reviewForm.$valid && reviewCtrl.addReview(product)" novalidate>
             <blackquote>
               <b>{{reviewCtrl.review.stars}} Stars: </b>
               {{reviewCtrl.review.body}}
               <cite>by: {{reviewCtrl.review.author}}</cite>
             </blackquote>
             <br />
-            <select ng-model="reviewCtrl.review.stars" class="btn btn-default dropdown-toggle margin-form">
+            <select ng-model="reviewCtrl.review.stars" class="btn btn-default dropdown-toggle margin-form" required>
               <option value="1">1 star</option>
               <option value="2">2 stars</option>
               <option value="3">3 stars</option>
               <option value="4">4 stars</option>
               <option value="5">5 stars</option>
             </select>
-            <textarea ng-model="reviewCtrl.review.body" class="form-control margin-form" placeholder="Comment"></textarea>
+            <textarea ng-model="reviewCtrl.review.body" class="form-control margin-form" placeholder="Comment" required></textarea>
             <label class="margin-form">by:</label>
-            <input ng-model="reviewCtrl.review.author" type="email" class="form-control margin-form-mail" placeholder="email" />
+            <input ng-model="reviewCtrl.review.author" type="email" class="form-control margin-form-mail" placeholder="email" required />
+            <div class="alert alert-danger margin-form">Review form is {{reviewForm.$valid}}</div>
             <input type="submit" value="Submit" class="btn btn-primary margin-form" />
           </form>
           

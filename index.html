@@ -19,7 +19,8 @@
   <br />
   <div class="list-group">
     <div class="list-group-item" ng-repeat="product in store.products">
-      <h3> {{ product.name }} <em class="pull-right">{{ product.price | currency }}</em> </h3>
+      <!-- <h3 ng-include="'partials/product-title.html'"></h3> -->
+      <h3 product-title></h3>
       <p> {{ product.description }} </p>
       <button class="btn btn-success" ng-show="product.canPurchase"> Add to cart </button>
       <!-- Image Gallery  -->
@@ -32,59 +33,8 @@
           </ul>
         </div>
 
-      <section class="tab" ng-controller="PanelController as panel">
-        <ul class="nav nav-pills">
-          <li ng-class="{active: panel.isSelected(1)}">
-            <a href ng-click="panel.selectTab(1)">Description</a>
-          </li>
-          <li ng-class="{active: panel.isSelected(2)}">
-            <a href ng-click="panel.selectTab(2)">Specifications</a>
-          </li>
-          <li ng-class="{active: panel.isSelected(3)}">
-            <a href ng-click="panel.selectTab(3)">Reviews</a>
-          </li>
-        </ul>
-
-        <div class="panel" ng-show="panel.isSelected(1)">
-          <h4>Description</h4>
-          <blockquote>{{product.description}}</blockquote>
-        </div>
-        <div class="panel" ng-show="panel.isSelected(2)">
-          <h4>Specifications</h4>
-          <blockquote>Shine: {{product.shine}}</blockquote>
-        </div>
-        <div class="panel" ng-show="panel.isSelected(3)">
-          <h4>Review</h4>
-          <blockquote ng-repeat="review in product.reviews">
-            <b>{{review.stars}} Stars: </b>
-            {{review.body}} 
-            <cite class="secondary-text">- {{review.author}}</cite>
-          </blockquote>
-          
-          <form name="reviewForm" ng-controller="ReviewController as reviewCtrl"
-           ng-submit="reviewForm.$valid && reviewCtrl.addReview(product)" novalidate>
-            <blackquote>
-              <b>{{reviewCtrl.review.stars}} Stars: </b>
-              {{reviewCtrl.review.body}}
-              <cite>by: {{reviewCtrl.review.author}}</cite>
-            </blackquote>
-            <br />
-            <select ng-model="reviewCtrl.review.stars" class="btn btn-default dropdown-toggle margin-form" required>
-              <option value="1">1 star</option>
-              <option value="2">2 stars</option>
-              <option value="3">3 stars</option>
-              <option value="4">4 stars</option>
-              <option value="5">5 stars</option>
-            </select>
-            <textarea ng-model="reviewCtrl.review.body" class="form-control margin-form" placeholder="Comment" required></textarea>
-            <label class="margin-form">by:</label>
-            <input ng-model="reviewCtrl.review.author" type="email" class="form-control margin-form-mail" placeholder="email" required />
-            <div class="alert alert-danger margin-form">Review form is {{reviewForm.$valid}}</div>
-            <input type="submit" value="Submit" class="btn btn-primary margin-form" />
-          </form>
-          
-        </div>
-      </section>
+      <product-panels ng-controller="PanelController as panel"></product-panels>
+      
     </div>
   </div>
   </div>

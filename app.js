@@ -1,8 +1,8 @@
 (function(){
-  
+
   // initialize angular
   var app = angular.module('gemStore', [ ]);
-  
+
   // Gem objects
   var gems = [
     {
@@ -87,45 +87,58 @@
 
   // controller for Store
   app.controller('StoreController', function(){
-    
+
     // set the products as the Gem objects
-    this.products = gems;  
+    this.products = gems;
   });
-  
+
   // controller for Panels
   app.controller("PanelController", function(){
-    
+
     // set the tab to #1 (Description)
     this.tab = 1;
-    
+
     // selectTab function set tab to a seected tab
     this.selectTab = function(setTab){
       // tab is setted to active tab
       this.tab = setTab;
     };
-    
+
     // if tab is selected the function return checked tab
     this.isSelected = function(checkTab){
       // return tab
       return this.tab === checkTab;
     };
-    
+
   });
-  
+
   // controller for Reviews
   app.controller("ReviewController", function(){
-    
+
     // new review object
     this.review = {};
-    
+
     // add Review function
     this.addReview = function(product){
-      this.review.createdOn = Date.now(); // add timestamp 
+      this.review.createdOn = Date.now(); // add timestamp
       product.reviews.push(this.review); // push the content into review fields
       this.review = {}; //reset the form
     };
-    
-  });
-  
-})();
 
+  });
+
+  app.directive('productTitle', function(){
+    return{
+      restrict: 'A',
+      templateUrl: 'partials/product-title.html'
+    };
+  });
+
+  app.directive('productPanels', function(){
+    return{
+      restrict: 'E',
+      templateUrl: 'partials/product-panels.html'
+    };
+  });
+
+})();
